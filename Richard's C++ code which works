@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+ 
+using namespace std;
+ 
+int main() {
+  //take in the number of test cases
+	int n, b;
+	cin >> b;
+	for(int i = 0;i<b;i++){
+    
+		int len = 0;
+		cin >> n;
+		string greet;
+		cin >> greet;
+
+    //Find the length of the string
+		while(greet[len] != '\0'){
+			len++;
+		}
+		string orig = greet;
+		reverse(greet.begin(), greet.end());
+
+    //checks to see if first half is less than the second half and if there is an odd number of times.
+      // if so it will reverse the original and put the reversed version of the reversed original onto the end
+		if((orig.substr(0,len/2) < greet.substr(0,len/2))&&(n%2 == 1)){
+			string bruh = orig;
+			reverse(orig.begin(), orig.end());
+			greet = bruh + orig;
+		}
+    //checks to see if first half is less than the second half and if there is an even number of times.
+      // does nothing
+		else if((orig.substr(0,len/2) < greet.substr(0,len/2))&&(n%2 == 0)) {
+			greet = orig;
+		}
+      //checks to see if first half is greater than the second half and if there is an even number of times.
+        // if so it will reverse the original and put the reversed version of the reversed original onto the end
+		else if ((orig.substr(0,len/2) > greet.substr(0,len/2))&&(n%2 == 0)){
+			string bruh = orig;
+			reverse(orig.begin(), orig.end());
+			greet = orig + bruh;
+		}
+      //checks to see if first half is greater than the second half and if there is an odd number of times.
+        // just reverses
+		else{
+			reverse(orig.begin(), orig.end());
+		}
+		
+		cout << greet << endl;
+	}
+}
