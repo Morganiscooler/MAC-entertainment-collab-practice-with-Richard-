@@ -1,0 +1,3 @@
+My ideas:
+create user input, then for loop, add another int readline to represent amount of times we use the reverse function, create 
+a reverse function, add the string input as the argument for the reverse() to work.
