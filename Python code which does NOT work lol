@@ -1,0 +1,38 @@
+import os
+import math
+# Define a function before it is called
+# This function is used to reverse the string when needed.
+def reverse(x):
+    return x[::-1]
+
+testCases = int(input())
+# Make test cases
+for i in range(testCases):
+    # The number of operations done
+    NumberOfOperations = int(input())
+    # Takes the string and stores it
+    stringInput = input()
+    # Reverses the string
+    reversedString= reverse(stringInput)
+    # To determine the length of the stringInput:
+
+    # Starts at the beginning of the string, then splits the length of the string in half.
+    str = stringInput[0:len(stringInput)//2] # String's substring begins from index 0, start.
+    # Starts at the beginning of the REVERSED string, then splits the length of the REVERSED string in half.
+    reversedStr = reversedString[0:len(reversedString)//2]
+    # If the first half of the regular string is less than the first half of the reversed string & is ODD,
+    # Return the reversed string with the regular string added to the end
+    if (str < reversedStr) & NumberOfOperations%2==1:
+        print(reversedString + stringInput)
+    # If the first half of the regular string is less than the first half of the reversed string & is EVEN
+    # Return regular string
+    elif (str < reversedStr) & NumberOfOperations%2==0:
+        print(stringInput)
+    # If the first half of the regular string is greater than the first half of the reversed string & is EVEN,
+    # Return the reversed string with the regular string added to the end
+    elif (str > reversedStr) & NumberOfOperations%2==0:
+        print(reversedString + stringInput)
+    # If the first half of the regular string is greater than the first half of the reversed string & is ODD,
+    # Return the reversed string
+    elif(str > reversedStr) & NumberOfOperations%2==1:
+        print(reversedString)
