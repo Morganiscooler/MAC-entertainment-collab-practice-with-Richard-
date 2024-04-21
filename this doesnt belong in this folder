@@ -1,0 +1,114 @@
+import os
+import math
+import string
+
+testcases = int(input())
+for i in range(testcases):
+    NumberOfOperations = int(input())
+    nums = input()
+    # print(trim)
+
+    Emptyarray = []
+    if ' ' not in nums:
+        nums.translate({ord(c): None for c in string.whitespace})
+        numsSplit = nums.split(' ')
+        Emptyarray = list(map(int, nums.split(",")))
+        # This string checks the count of the nums stored in the array
+        # print(f'The count of array {i} is: 1')
+
+        # Calculate N/2 the MEDIAN
+        calc = (len(Emptyarray)-1)/2
+        middleIndex = math.floor(calc)
+        Median = Emptyarray[middleIndex] # Find the number in the middle index.
+        Increase = Median + 1
+        count = 0
+        # print(Emptyarray)
+        Emptyarray[middleIndex] = Increase
+        sorted(Emptyarray)
+        if(Emptyarray[middleIndex] == Increase):
+            count += 1
+            print(f"The count is now {count}.")
+        print(f'The sorted array is now: {Emptyarray}')
+        # print(Increase)
+
+        # What I want to do now is figure out how many 1s it will take to add to the Median
+        # to make it equal to the increase. We also want to figure out how many operations
+        # it will take to make the Increase go to the original spot of the median
+
+    # def counter(): function here
+    #     count = 0
+    #     count += 1
+
+    else:
+        nums.translate({ord(c): None for c in string.whitespace})
+        numsSplit = nums.split(' ')
+        Emptyarray = list(map(int, nums.split(' ')))
+        # This string checks the count of the nums stored in the array
+
+        # Calculate N/2 the MEDIAN
+        calc = (len(Emptyarray)-1)/2
+        middleIndex = math.floor(calc) # Round down to avoid rounding up errors
+        Median = Emptyarray[middleIndex] # Find the number in the middle index.
+        # print(Median)
+        # print(f'The numbers contained in the array are {Emptyarray}') #Makes sure the original array is sorted
+        Increase = Median + 1
+        # print(f'The numbers contained in the array are {Emptyarray}')
+        # print(Increase)
+        # Use the halfway index (middleIndex) of the sorted array to determine the amount of operations
+        # needed in order for the original Median to become the new Median
+
+
+        # Think of it like this: I make a new number, I insert the new number into the Emptyarray.
+        # I want it to AUTOMATICALLY be sorted in the order smallest --> greatest.
+        # The newly added number into the list will automatically be sorted whereever it's rank is
+        OldMedian = Median
+
+        # Fix the count problem... =-=
+        count = 0 #The count starts at 0, but the rest need to be added up in the loop to ensure not all are = 1
+        while (True):
+            if(Median == OldMedian):
+                count += 1
+                #  creaye a for loop to allow the array to automatically sort itself everytime
+                #  a new middleIndex is replaced with Median += 1
+                Median = Median + 1
+                # count += 1
+                # Emptyarray[middleIndex] = Median
+                Emptyarray = sorted(Emptyarray)
+                print(f"the count now is: {count}")
+                print(f'The sorted array is now: {Emptyarray}')
+                if (Median != OldMedian):
+                    break
+
+
+            # if (Median > OldMedian):
+                #     OldMedian2 = OldMedian
+                #     OldMedian += 1
+                #     Emptyarray[middleIndex] = OldMedian
+                #     Emptyarray = sorted(Emptyarray)
+                #
+                #     if (OldMedian > OldMedian2):
+                #         OldMedian2 += 1
+                #         Emptyarray[middleIndex] = OldMedian2
+                #         Emptyarray = sorted(Emptyarray)
+
+        break
+                        # print(count) Count isn't working, it is not properly displaying the number of
+                        # operations being performed currently.
+
+                    # if (Median > OldMedian):
+                    #     OldMedian += 1
+                    #     Emptyarray[middleIndex] = OldMedian
+                    #     Emptyarray = sorted(Emptyarray)
+                    #     if (Median > OldMedian2):
+                    #         OldMedian2 += 1
+                    #         Emptyarray[middleIndex] = OldMedian2
+                    #         Emptyarray = sorted(Emptyarray)
+
+                    # The automatic number rank sorting doesn't work BRUH!!!
+
+
+
+
+#I want to find the median of the array, then increase the median by 1. Then, I want to figure out how many
+# operations (continuously adding 1s) it will take till the (original median + 1) makes it back to the original
+# median spot.
